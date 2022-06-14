@@ -46,7 +46,7 @@ export function App() {
             className="mx-2"
             type="range"
             min="1"
-            max="26"
+            max="25"
             defaultValue={13}
             onChange={e => setCipherOffset(Number(e.target.value))}
           ></input>
@@ -54,17 +54,19 @@ export function App() {
         </p>
 
         <textarea
-          className="w-full border rounded-lg"
+          className="w-full px-2 py-1 text-sm border rounded-lg"
           onChange={e => setCipherText(e.target.value)}
         ></textarea>
         <div className="flex justify-between w-full">
-          <button className="px-3 py-1 border rounded-lg">Encrypt Text</button>
-          <button className="px-3 py-1 border rounded-lg">Clear Text</button>
+          <button className="px-3 py-1 text-white bg-blue-500 border rounded-lg">
+            Encrypt Text
+          </button>
+          <button className="px-3 py-1 text-white bg-red-500 border rounded-lg">
+            Clear Text
+          </button>
         </div>
         <div className="w-full px-3 py-1 text-center border rounded-lg">
-          {result}
-          {cipher(result, cipherOffset, cipherStateEnum.decoding) ===
-            'ABCDEFGHIJKLMNOPQRSTUVWXYZ' && 'Encryption Complete! Working!'}
+          {result === '' ? 'No text to encrypt' : result}
         </div>
       </div>
     </div>

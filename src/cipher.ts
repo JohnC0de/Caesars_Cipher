@@ -1,9 +1,9 @@
 import { cipherStateEnum } from './App'
 
-const MINIMUM_UPPERCASE_CHARCODE = 65
-const MAXIMUM_UPPERCASE_CHARCODE = 90
-const MINIMUM_LOWERCASE_CHARCODE = 97
-const MAXIMUM_LOWERCASE_CHARCODE = 122
+const UPPERCASE_MINIMUM_CHARCODE = 65
+const UPPERCASE_MAXIMUM_CHARCODE = 90
+const LOWERCASE_MINIMUM_CHARCODE = 97
+const LOWERCASE_MAXIMUM_CHARCODE = 122
 
 export function cipher(
   text: string,
@@ -13,27 +13,36 @@ export function cipher(
   return Array.from(text)
     .map(char => {
       const charCode = char.charCodeAt(0)
+
       const charCodeShifted =
         action === cipherStateEnum.decoding
           ? charCode - offset
           : charCode + offset
-      if (
-        charCode >= MINIMUM_UPPERCASE_CHARCODE &&
-        charCode <= MAXIMUM_UPPERCASE_CHARCODE
-      ) {
-        if (charCodeShifted > MAXIMUM_UPPERCASE_CHARCODE) {
+
+      const charUpperCase =
+        charCode >= UPPERCASE_MINIMUM_CHARCODE &&
+        charCode <= UPPERCASE_MAXIMUM_CHARCODE
+
+      const charLowerCase =
+        charCode >= LOWERCASE_MINIMUM_CHARCODE &&
+        charCode <= LOWERCASE_MAXIMUM_CHARCODE
+
+      if (charUpperCase || charLowerCase) {
+        const maximumLimit = charUpperCase
+          ? UPPERCASE_MAXIMUM_CHARCODE
+          : LOWERCASE_MAXIMUM_CHARCODE
+
+        const minimunLimit = charUpperCase
+          ? UPPERCASE_MINIMUM_CHARCODE
+          : LOWERCASE_MINIMUM_CHARCODE
+
+        if (charCodeShifted > maximumLimit) {
           return String.fromCharCode(
-            charCodeShifted -
-              MAXIMUM_UPPERCASE_CHARCODE +
-              MINIMUM_UPPERCASE_CHARCODE -
-              1
+            charCodeShifted - maximumLimit + minimunLimit - 1
           )
-        } else if (charCodeShifted < MINIMUM_UPPERCASE_CHARCODE) {
+        } else if (charCodeShifted < minimunLimit) {
           return String.fromCharCode(
-            charCodeShifted +
-              MAXIMUM_UPPERCASE_CHARCODE -
-              MINIMUM_UPPERCASE_CHARCODE -
-              1
+            charCodeShifted + maximumLimit - minimunLimit - 1
           )
         } else return String.fromCharCode(charCodeShifted)
       } else return char

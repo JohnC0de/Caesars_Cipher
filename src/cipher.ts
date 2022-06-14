@@ -42,7 +42,7 @@ export function cipher(
           )
         } else if (charCodeShifted < minimunLimit) {
           return String.fromCharCode(
-            charCodeShifted + maximumLimit - minimunLimit - 1
+            charCodeShifted + maximumLimit - minimunLimit + 1
           )
         } else return String.fromCharCode(charCodeShifted)
       } else return char

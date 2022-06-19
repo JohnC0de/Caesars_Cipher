@@ -12,7 +12,7 @@ One of the simplest and most widely known ciphers is a Caesar cipher, also known
 
 <img align="right" src="./src/assets/mobile_demo.png"/>
 
-<p>As part of one of FreeCodeCamp's 300 hour course training projects, I was challenged to program a ROT13 algorithm, in which letters are swapped for 13 places, so that "A" becomes "N", just like "B " becomes "O", and so on. A
+<p>As part of one of FreeCodeCamp's 300 hour course training projects, I was challenged to program a ROT13 algorithm, in which letters are swapped for 13 places, so that "A" becomes "N", just like "B " becomes "O", and so on.
 
 Despite having easily solved the challenge, I was interested in demonstrating it to other people and for that it needed to be more visual, so I had the idea of developing a very simple and easy to use page as proof of concept.
 
